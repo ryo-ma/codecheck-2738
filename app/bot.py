@@ -9,8 +9,8 @@ class Bot:
         self.hash = self.generate_hash()
 
     def generate_hash(self):
-        command_ascii = ''.join([str(ord(x)) for x in list(self.command)])
-        data_ascii = ''.join([str(ord(x)) for x in list(self.data)])
+        command_ascii = Bot.to_ascii(self.command)
+        data_ascii = Bot.to_ascii(self.data)
         command_science_notation = Bot.scientific_notation(int(command_ascii))
         data_science_notation = Bot.scientific_notation(int(data_ascii))
         sum_ascii = Bot.extract_character(command_science_notation) + Bot.extract_character(data_science_notation)
@@ -30,3 +30,7 @@ class Bot:
             result = result[2:]
             result = result.replace('e+', '')
         return int(result)
+
+    @staticmethod
+    def to_ascii(value):
+        return ''.join([str(ord(x)) for x in list(value)])
