@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+
 class Bot:
     def __init__(self, command_data):
         self.command = command_data['command']
@@ -9,10 +11,11 @@ class Bot:
     def generate_hash(self):
         command_ascii = ''.join([str(ord(x)) for x in list(self.command)])
         data_ascii = ''.join([str(ord(x)) for x in list(self.data)])
-        result_command = Bot.scientific_notation(int(command_ascii))
-        result_data = Bot.scientific_notation(int(data_ascii))
-        sum_ascii = Bot.extract_character(result_command) + Bot.extract_character(result_data)
-        return hex(sum_ascii)[2:]
+        command_science_notation = Bot.scientific_notation(int(command_ascii))
+        data_science_notation = Bot.scientific_notation(int(data_ascii))
+        sum_ascii = Bot.extract_character(command_science_notation) + Bot.extract_character(data_science_notation)
+        result = hex(sum_ascii)[2:]
+        return result
 
     @staticmethod
     def scientific_notation(num):
